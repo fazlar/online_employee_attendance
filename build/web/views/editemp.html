@@ -1,0 +1,86 @@
+
+<div class="col-md-6 col-md-offset-3 " style="margin: auto">
+    <h2 style="text-align: center ;margin-bottom: 10px">Update EMPLOYEE</h2>
+    <form name="form"  role="form" ng-submit="addemp()">
+        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+            <label for="username"> Name</label>
+            <input type="text" ng-hide="true" name="firstName" id="firstName" class="form-control" ng-model="employee.id" required />
+            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="employee.name" required />
+            <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">Name is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+            <label for="username">Email</label>
+            <input type="email" name="lastName" id="Text1" class="form-control" ng-model="employee.email" required />
+            <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Email is required</span>
+        </div>
+        <div class="form-group" >
+            <label for="startDate">Joing Date</label>
+            <input type="tex" ng-disabled="true" name="startDate" id="Text1" class="form-control" ng-model="employee.date | date:'dd/MM/yyyy' " required />
+            
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <label for="password">Job Titel</label>
+            <select class="form-control" id="select" name="select"  ng-model="employee.jobtitel">
+                <option value="CEO" selected>
+                    CEO
+                </option>
+                <option value="Manager">
+                    Manager
+                </option>
+                <option value="Account Officer">
+                    Third Choice
+                </option>
+            </select>
+           
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+            <label for="username">Address</label>
+            <input type="text" name="lastName" id="Text1" class="form-control" ng-model="employee.address" required />
+            <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">fiedl is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+            <label for="username">salary</label>
+            <input type="text" name="lastName" id="Text1" class="form-control" ng-model="employee.salary" required />
+            <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">field is required</span>
+        </div>
+        <div class="form-actions">
+            <input type="button" value="Update" class="btn btn-primary"  ng-click="updateEmp()">
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <!-- <a href="#!/login" class="btn btn-link">Cancel</a>-->
+        </div>
+    </form>
+
+</div>
+<div class="col-md-12 col-md-offset-3">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"> Name</th>
+                <th scope="col">email</th>
+                <th scope="col">joindate</th>
+                 <th scope="col">joindate</th>
+                 <th scope="col">salary</th>
+                  <th scope="col">address</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in data">
+                <th scope="row">{{ $index + 1}}</th>
+                <td>{{ item.name}}</td>
+                <td>{{ item.email}}</td>
+                <td>{{ item.identifiedDate | date:'dd/MM/yyyy'}}</td>
+                <td>{{ item.jobTitel}}</td>
+                <td>{{ item.salary}}</td>
+                <td>{{ item.address}}</td>
+                <td>
+                    <a class="btn btn-link text-success" ng-click="edit(item)"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-link text-danger" ng-click="delete(item, $index)"><i class="fa fa-trash"></i></a>
+
+                </td>
+            </tr>        
+        </tbody>
+    </table>
+</div>
+    
